@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <h1>Add your daily activities</h1>
+    <form method="POST" action="/">
+      <input type="text" name="activity_name">
+      <input type="submit" value="Add">
+    </form>
+
+    <h1>Activities to do</h1>
+    <table>
+      {% for activity in activities %}
+        <tr>
+          <td>
+            {{activity.activity_name}}
+          </td>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{activity.activity_name}}" name="oldactivity">
+              <input type="text" value="{{activity.activity_name}}" name="newactivity">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{activity.activity_name}}" name="activity_name">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
